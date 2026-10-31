@@ -56,9 +56,11 @@
 </tr>
 </tbody></table></div>
 </section><section class="story-block"><h3>예약 가능 여부 확인부터 결제 요청까지</h3>
-<p>기존 민박·트립의 KCP 결제는 서버에 설치한 실행 모듈을 호출하는 방식이었습니다. 호텔은 KCP API 방식의 결제 흐름을 사용했고, 저는 그 흐름에 맞춘 결제 화면과 프론트엔드 연동을 구현했습니다.</p>
+<p>기존 민박·트립의 KCP 결제는 서버에 설치한 실행 모듈을 호출하는 방식이었습니다. 호텔에서는 KCP API 방식의 결제 흐름에 맞춰 결제 화면과 프론트엔드 연동을 구현했습니다.</p>
+<p>PC에서는 결제창이 열려도 기존 예약서 화면이 유지됐고, 모바일에서는 같은 탭에서 KCP 결제 페이지로 이동했다가 돌아왔습니다.</p>
+<p>모바일에서는 <code>sessionStorage</code>로 예약자 이름·연락처 등을 포함한 예약 입력 정보를 보관하고, 결제 화면 복귀 시 복원했습니다. 사용자가 입력 내용을 다시 작성하지 않도록 처리했습니다.</p>
 <p>결제 페이지에 진입하면 <code>preCheckBooking</code>으로 예약 가능 여부를 먼저 확인하고, 객실별 인원 정보를 Expedia 형식의 <code>occupancy</code>로 구성했습니다. 승인·취소 등 결제 백엔드 로직은 백엔드 담당 영역이었습니다.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="예약·결제 단계별 담당 범위"><table><thead><tr><th scope="col">단계</th><th scope="col">프론트엔드에서 구현한 내용</th></tr></thead><tbody><tr><td data-label="단계"><span class="cell-value">결제 진입</span></td><td data-label="프론트엔드에서 구현한 내용"><span class="cell-value">preCheckBooking으로 예약 가능 여부 사전 확인</span></td></tr><tr><td data-label="단계"><span class="cell-value">요청 데이터</span></td><td data-label="프론트엔드에서 구현한 내용"><span class="cell-value">객실별 인원 정보를 Expedia occupancy 형식으로 구성</span></td></tr><tr><td data-label="단계"><span class="cell-value">결제 연동</span></td><td data-label="프론트엔드에서 구현한 내용"><span class="cell-value">KCP API 방식의 결제 흐름에 맞춘 화면·프론트 연동</span></td></tr><tr><td data-label="단계"><span class="cell-value">서버 처리와 협업</span></td><td data-label="프론트엔드에서 구현한 내용"><span class="cell-value">승인·취소 등 백엔드 결제 로직은 백엔드 담당</span></td></tr></tbody></table></div></section><section class="story-block"><h3>검색 조건을 공유하고 돌아와도 같은 화면을 복원</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="예약·결제 단계별 담당 범위"><table><thead><tr><th scope="col">단계</th><th scope="col">프론트엔드에서 구현한 내용</th></tr></thead><tbody><tr><td data-label="단계"><span class="cell-value">결제 진입</span></td><td data-label="프론트엔드에서 구현한 내용"><span class="cell-value">preCheckBooking으로 예약 가능 여부 사전 확인</span></td></tr><tr><td data-label="단계"><span class="cell-value">요청 데이터</span></td><td data-label="프론트엔드에서 구현한 내용"><span class="cell-value">객실별 인원 정보를 Expedia occupancy 형식으로 구성</span></td></tr><tr><td data-label="단계"><span class="cell-value">결제 연동</span></td><td data-label="프론트엔드에서 구현한 내용"><span class="cell-value">KCP API 방식의 결제 흐름에 맞춘 화면·프론트 연동</span></td></tr><tr><td data-label="단계"><span class="cell-value">모바일 결제 복귀</span></td><td data-label="프론트엔드에서 구현한 내용"><span class="cell-value">sessionStorage에 보관한 예약 입력 정보를 복원해 재입력 방지</span></td></tr><tr><td data-label="단계"><span class="cell-value">서버 처리와 협업</span></td><td data-label="프론트엔드에서 구현한 내용"><span class="cell-value">승인·취소 등 백엔드 결제 로직은 백엔드 담당</span></td></tr></tbody></table></div></section><section class="story-block"><h3>검색 조건을 공유하고 돌아와도 같은 화면을 복원</h3>
 <p>성급·가격·카테고리 필터, 지역 선택, 지도, 결과 목록이 흩어져 있어 각 화면이 같은 검색 조건을 사용하도록 정리할 필요가 있었습니다. URL을 검색 조건의 기준으로 삼고, 문자열 파라미터를 필드별로 파싱하는 타입 안전 필터 훅을 구현했습니다. 기본값은 URL에서 생략하고 잘못된 값은 타입 가드로 기본값에 돌아가도록 처리했습니다.</p>
 <p>Provider에서 화면이 사용하는 필터 파라미터를 모으고, 파싱한 조건을 TanStack Query의 query key와 요청에 연결했습니다. 이로써 필터 조합을 URL로 공유·북마크하고, 뒤로가기로 이전 검색 조건을 복원할 수 있게 했습니다.</p>
 <p>지도에는 Google Maps의 <code>AdvancedMarkerElement</code>로 가격 마커를 표시했습니다. 마커에 커서를 올리면 숙소 정보를 보여주고, 필터로 결과 목록이 바뀌면 <code>fitBounds</code>로 지도 범위를 맞췄습니다. 지도 객체와 DOM ref는 훅에서 함께 관리했습니다.</p>
@@ -279,7 +281,8 @@
 <p>위 도식의 프론트 배포 경로처럼 의존성 설치, 번역 JSON 생성, 빌드, S3 배포, CloudFront 캐시 무효화를 순서대로 수행하도록 했습니다.</p>
 <p>trunk-based development처럼 변경을 main에 자주 통합하는 방식도 선택지였지만, 당시에는 피처 플래그가 없고 자동 통합을 신뢰할 만큼 테스트가 확보되지 않았습니다. 미완성 변경이 main의 안정성에 미칠 영향을 고려해, release·사내 테스트 단계를 두는 git-flow를 선택했습니다.</p>
 </section><section class="story-block"><h3>개발 속도와 검증 기반 보완</h3>
-<p>TypeScript를 점진 도입하고, Vitest·React Testing Library·MSW로 네트워크를 목킹한 컴포넌트 통합 테스트를 작성했습니다. Vite 전환도 진행했습니다.</p>
+<p>광고 대시보드에서 코드 변경에 따른 회귀 오류를 확인하기 위해, 오류 발생 시 영향이 큰 기능부터 통합 테스트를 작성했습니다. Vitest·React Testing Library·MSW를 사용해 API 응답을 모킹하고 컴포넌트 동작을 검증했습니다.</p>
+<p>TypeScript를 점진 도입하고 Vite 전환도 진행했습니다.</p>
 <div class="table-scroll" tabindex="0" role="region" aria-label="비교 표"><table>
 <thead>
 <tr>
