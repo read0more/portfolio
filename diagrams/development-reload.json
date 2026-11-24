@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Vite 빌드 결과를 쓰는 운영·개발 경로",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1220,
+      500
+    ],
+    "legend": {
+      "mode": "hidden"
+    }
+  },
+  "components": [
+    {
+      "id": "source",
+      "type": "frontend",
+      "label": "React · TypeScript",
+      "sublabel": "소스 수정",
+      "pos": [
+        40,
+        100
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "vite",
+      "type": "frontend",
+      "label": "Vite 빌드",
+      "sublabel": "산출물 생성",
+      "pos": [
+        360,
+        100
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "php",
+      "type": "backend",
+      "label": "PHP 페이지",
+      "sublabel": "빌드 결과 포함",
+      "pos": [
+        690,
+        100
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "watch",
+      "type": "backend",
+      "label": "chokidar",
+      "sublabel": "산출물 변경 감지",
+      "pos": [
+        360,
+        340
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "socket",
+      "type": "messagebus",
+      "label": "소켓 서버",
+      "sublabel": "개발 환경 전용",
+      "pos": [
+        690,
+        340
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "browser",
+      "type": "frontend",
+      "label": "개발 브라우저",
+      "sublabel": "페이지 새로고침",
+      "pos": [
+        1000,
+        340
+      ],
+      "size": [
+        180,
+        72
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "source-vite",
+      "to": "vite",
+      "label": "소스 빌드",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left",
+      "from": "source"
+    },
+    {
+      "id": "vite-php",
+      "to": "php",
+      "label": "산출물 제공",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left",
+      "from": "vite"
+    },
+    {
+      "id": "vite-watch",
+      "to": "watch",
+      "label": "개발 빌드 감시",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "from": "vite",
+      "labelAt": [
+        530,
+        248
+      ]
+    },
+    {
+      "id": "watch-socket",
+      "to": "socket",
+      "label": "변경 감지 전달",
+      "variant": "dashed",
+      "fromSide": "right",
+      "toSide": "left",
+      "from": "watch"
+    },
+    {
+      "id": "socket-browser",
+      "to": "browser",
+      "label": "새로고침 신호",
+      "variant": "dashed",
+      "fromSide": "right",
+      "toSide": "left",
+      "from": "socket"
+    }
+  ]
+}

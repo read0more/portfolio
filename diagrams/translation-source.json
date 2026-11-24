@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "번역 원본 한 행을 React와 PHP에 반영",
+    "quality_profile": "showcase",
+    "viewBox": [
+      955,
+      510
+    ],
+    "legend": {
+      "mode": "hidden"
+    }
+  },
+  "components": [
+    {
+      "id": "sheet",
+      "type": "external",
+      "label": "Google Sheets",
+      "sublabel": "번역 ID · 한국어 · 영어",
+      "pos": [
+        80,
+        216
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "script",
+      "type": "backend",
+      "label": "빌드 전 스크립트",
+      "sublabel": "시트 파싱",
+      "pos": [
+        390,
+        86
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "json",
+      "type": "frontend",
+      "label": "React · i18n JSON",
+      "sublabel": "react-i18next",
+      "pos": [
+        695,
+        86
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "import",
+      "type": "backend",
+      "label": "PHP 적재 코드",
+      "sublabel": "시트 읽기",
+      "pos": [
+        390,
+        343
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "db",
+      "type": "database",
+      "label": "PHP · DB",
+      "sublabel": "서비스 번역 조회",
+      "pos": [
+        695,
+        343
+      ],
+      "size": [
+        180,
+        72
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "sheet-script",
+      "to": "script",
+      "label": "번역 행 읽기",
+      "variant": "emphasis",
+      "fromSide": "top",
+      "toSide": "left",
+      "from": "sheet"
+    },
+    {
+      "id": "script-json",
+      "to": "json",
+      "label": "언어별 JSON 생성",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left",
+      "from": "script"
+    },
+    {
+      "id": "sheet-import",
+      "to": "import",
+      "label": "같은 번역 행 읽기",
+      "variant": "default",
+      "fromSide": "bottom",
+      "toSide": "left",
+      "from": "sheet"
+    },
+    {
+      "id": "import-db",
+      "to": "db",
+      "label": "번역 데이터 적재",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left",
+      "from": "import"
+    }
+  ]
+}

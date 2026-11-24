@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "PR 검증에서 광고 대시보드 배포까지",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1280,
+      585
+    ],
+    "legend": {
+      "mode": "hidden"
+    }
+  },
+  "components": [
+    {
+      "id": "pr",
+      "type": "external",
+      "label": "PR 등록",
+      "sublabel": "GitHub Actions",
+      "pos": [
+        40,
+        248
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "test",
+      "type": "backend",
+      "label": "Vitest 통합 테스트",
+      "sublabel": "RTL · MSW",
+      "pos": [
+        350,
+        248
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "main",
+      "type": "backend",
+      "label": "main 병합",
+      "sublabel": "push 이벤트",
+      "pos": [
+        675,
+        248
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "build",
+      "type": "backend",
+      "label": "대시보드 빌드",
+      "sublabel": "코드 · 번역 JSON",
+      "pos": [
+        1020,
+        248
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "fail",
+      "type": "external",
+      "label": "PR 검사 실패",
+      "sublabel": "실패 원인 확인",
+      "pos": [
+        350,
+        478
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "sheets",
+      "type": "external",
+      "label": "Google Sheets",
+      "sublabel": "번역 행",
+      "pos": [
+        1020,
+        34
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "s3",
+      "type": "cloud",
+      "label": "S3",
+      "sublabel": "정적 산출물 업로드",
+      "pos": [
+        1020,
+        478
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "cdn",
+      "type": "cloud",
+      "label": "CloudFront",
+      "sublabel": "캐시 무효화",
+      "pos": [
+        675,
+        478
+      ],
+      "size": [
+        180,
+        72
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "pr-test",
+      "to": "test",
+      "label": "사용자 동작 검증",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left",
+      "from": "pr"
+    },
+    {
+      "id": "test-main",
+      "to": "main",
+      "label": "검사 통과",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left",
+      "from": "test"
+    },
+    {
+      "id": "main-build",
+      "to": "build",
+      "label": "배포 작업 시작",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left",
+      "from": "main"
+    },
+    {
+      "id": "test-fail",
+      "to": "fail",
+      "label": "검사 실패",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "from": "test",
+      "labelAt": [
+        500,
+        405
+      ]
+    },
+    {
+      "id": "sheets-build",
+      "to": "build",
+      "label": "번역 JSON 생성",
+      "variant": "default",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "from": "sheets",
+      "labelAt": [
+        1190,
+        174
+      ]
+    },
+    {
+      "id": "build-s3",
+      "to": "s3",
+      "label": "정적 파일 전송",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "from": "build",
+      "labelAt": [
+        1190,
+        405
+      ]
+    },
+    {
+      "id": "s3-cdn",
+      "to": "cdn",
+      "label": "업로드 후 무효화",
+      "variant": "emphasis",
+      "fromSide": "left",
+      "toSide": "right",
+      "from": "s3"
+    }
+  ]
+}

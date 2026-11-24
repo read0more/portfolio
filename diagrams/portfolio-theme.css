@@ -1,0 +1,23 @@
+/* Archify 렌더링과 SVG 내보내기에 포함하는 포트폴리오 테마. */
+@font-face {font-family:'Portfolio Gothic';font-style:normal;font-weight:400;src:url(../fonts/regular.woff2) format('woff2');}
+@font-face {font-family:'Portfolio Gothic';font-style:normal;font-weight:700;src:url(../fonts/bold.woff2) format('woff2');}
+[data-theme="light"] {--bg:#f2f6fa;--panel:#f2f6fa;--grid:transparent;--panel-border:#c3d1dd;--text:#182c43;--text-muted:#304761;--text-dim:#516780;--mask:#f2f6fa;--arrow:#516780;--arrow-emphasis:#234c85;--paper-node:#fff;--paper-line:#b6c5d5;--paper-accent:#e5f4ef;--paper-accent-line:#9fcabe;--paper-accent-ink:#17695d;--frontend-fill:#fff;--frontend-stroke:#b6c5d5;--backend-fill:#fff;--backend-stroke:#b6c5d5;--database-fill:#fff;--database-stroke:#b6c5d5;--cloud-fill:#fff;--cloud-stroke:#b6c5d5;--security-fill:#fff;--security-stroke:#b6c5d5;--messagebus-fill:#fff;--messagebus-stroke:#b6c5d5;--external-fill:#fff;--external-stroke:#b6c5d5;}
+[data-theme="dark"] {--bg:#172536;--panel:#1d3044;--grid:transparent;--panel-border:#435a70;--text:#f3f8fc;--text-muted:#d0dce8;--text-dim:#abbed0;--mask:#1d3044;--arrow:#adc0d4;--arrow-emphasis:#afc9ed;--paper-node:#263c50;--paper-line:#7690a8;--paper-accent:#214941;--paper-accent-line:#88bcae;--paper-accent-ink:#b0e5d2;--frontend-fill:#263c50;--frontend-stroke:#7690a8;--backend-fill:#263c50;--backend-stroke:#7690a8;--database-fill:#263c50;--database-stroke:#7690a8;--cloud-fill:#263c50;--cloud-stroke:#7690a8;--security-fill:#263c50;--security-stroke:#7690a8;--messagebus-fill:#263c50;--messagebus-stroke:#7690a8;--external-fill:#263c50;--external-stroke:#7690a8;}
+
+body { font-family: 'Portfolio Gothic', sans-serif; }
+svg text { font-family:'Portfolio Gothic', sans-serif; }
+svg[data-preset="classic"] .semantic-sigil { display:none; }
+svg[data-preset="classic"] text[data-node-label] { font-size:17px; font-weight:700; }
+svg[data-preset="classic"] g[data-node-id] text[data-detail="context"] { font-size:13.5px; }
+svg[data-preset="classic"] g[data-edge-from] text { font-size:13px; fill:var(--text-muted); }
+svg[data-preset="classic"] :is(#node-filter,#node-vite,#node-json,#node-build,#node-pr,#node-php[data-node-sublabel="운영 요청 수신"]) > rect:not(.c-mask) {
+  fill:var(--paper-accent); stroke:var(--paper-accent-line);
+}
+svg[data-preset="classic"] :is(#node-filter,#node-vite,#node-json,#node-build,#node-pr,#node-php[data-node-sublabel="운영 요청 수신"]) > text[data-node-label] {
+  fill:var(--paper-accent-ink);
+}
+svg[data-preset="classic"] .a-security {stroke:var(--paper-accent-ink);}
+svg[data-preset="classic"] .m-security {fill:var(--paper-accent-ink);}
+svg[data-preset="classic"] .a-dashed {stroke:var(--arrow);}
+svg[data-preset="classic"] .m-dashed {fill:var(--arrow);}
+

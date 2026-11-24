@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "기존 PHP 세션이 유효할 때 호텔 토큰 갱신",
+    "quality_profile": "showcase",
+    "column_fit": "spread",
+    "viewBox": [
+      880,
+      490
+    ],
+    "legend": {
+      "mode": "hidden"
+    }
+  },
+  "participants": [
+    {
+      "id": "hotel",
+      "type": "frontend",
+      "label": "Next.js 호텔 화면"
+    },
+    {
+      "id": "auth",
+      "type": "security",
+      "label": "인증 연동 API"
+    },
+    {
+      "id": "php",
+      "type": "backend",
+      "label": "기존 PHP 세션"
+    }
+  ],
+  "messages": [
+    {
+      "id": "request",
+      "from": "hotel",
+      "to": "auth",
+      "y": 192,
+      "label": "세션으로 토큰 갱신 요청",
+      "variant": "emphasis"
+    },
+    {
+      "id": "verify",
+      "from": "auth",
+      "to": "php",
+      "y": 254,
+      "label": "세션 유효성 확인",
+      "variant": "security"
+    },
+    {
+      "id": "valid",
+      "from": "php",
+      "to": "auth",
+      "y": 316,
+      "label": "유효한 세션 확인",
+      "variant": "return"
+    },
+    {
+      "id": "token",
+      "from": "auth",
+      "to": "hotel",
+      "y": 378,
+      "label": "새 액세스 토큰 반환",
+      "variant": "return"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "호텔 화면의 토큰 보관",
+      "items": [
+        "새 액세스 토큰은 메모리에 보관합니다."
+      ]
+    }
+  ]
+}

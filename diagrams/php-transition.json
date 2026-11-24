@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "기존 PHP 진입점에서 React 화면으로 전환",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1220,
+      500
+    ],
+    "legend": {
+      "mode": "hidden"
+    }
+  },
+  "components": [
+    {
+      "id": "url",
+      "type": "external",
+      "label": "기존 URL",
+      "sublabel": "메인 · 서브메인",
+      "pos": [
+        40,
+        100
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "php",
+      "type": "backend",
+      "label": "PHP 진입점",
+      "sublabel": "운영 요청 수신",
+      "pos": [
+        350,
+        100
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "react",
+      "type": "frontend",
+      "label": "React Router · 화면",
+      "sublabel": "Vite 빌드 결과",
+      "pos": [
+        675,
+        100
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "api",
+      "type": "backend",
+      "label": "공통 데이터 API",
+      "sublabel": "백엔드 팀이 분리",
+      "pos": [
+        1000,
+        100
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "template",
+      "type": "backend",
+      "label": "PHP 템플릿",
+      "sublabel": "기존 화면 표시",
+      "pos": [
+        350,
+        340
+      ],
+      "size": [
+        180,
+        72
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "url-php",
+      "to": "php",
+      "label": "기존 주소로 접속",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left",
+      "from": "url"
+    },
+    {
+      "id": "php-react",
+      "to": "react",
+      "label": "빌드 결과 include",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left",
+      "from": "php"
+    },
+    {
+      "id": "react-api",
+      "to": "api",
+      "label": "화면 데이터 조회",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left",
+      "from": "react"
+    },
+    {
+      "id": "php-template",
+      "to": "template",
+      "label": "개편 범위 밖 요청",
+      "variant": "default",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "from": "php",
+      "labelAt": [
+        530,
+        248
+      ]
+    }
+  ]
+}

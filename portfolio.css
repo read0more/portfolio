@@ -1,0 +1,112 @@
+@font-face {
+  font-family: "Portfolio Gothic";
+  src: url("fonts/regular.woff2") format("woff2");
+  font-weight: 400; font-display: swap;
+}
+@font-face {
+  font-family: "Portfolio Gothic";
+  src: url("fonts/bold.woff2") format("woff2");
+  font-weight: 700; font-display: swap;
+}
+@font-face {
+  font-family: "Portfolio Gothic";
+  src: url("fonts/extra-bold.woff2") format("woff2");
+  font-weight: 800; font-display: swap;
+}
+:root {
+  --ink: #182c43;
+  --body: #304761;
+  --meta: #516780;
+  --blue: #234c85;
+  --line: #c3d1dd;
+  --wash: #f2f6fa;
+  --teal: #17695d;
+  font-family: "Portfolio Gothic", NanumGothic, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  line-height: 1.75; color: var(--body); background: #fff;
+  word-break: keep-all; overflow-wrap: break-word;
+}
+* { box-sizing: border-box; }
+body, h1, h2, h3, p, figure, ol, dl, dd { margin: 0; }
+a { color: var(--blue); text-underline-offset: .22em; }
+a:focus-visible, summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+.sr, .skip:not(:focus) { position: absolute; height: 1px; width: 1px; clip-path: inset(50%); overflow: hidden; }
+.skip:focus { position: absolute; z-index: 2; background: white; padding: .3rem 1rem; }
+.layout { display: grid; grid-template-columns: minmax(0, 810px) 188px; gap: clamp(42px,5.6vw,88px); justify-content: center; padding: 0 36px; }
+main { grid-row: 1; grid-column: 1; min-width: 0; }
+.contents { grid-row: 1; grid-column: 2; }
+.contents nav { position: sticky; top: 38px; margin-top: 38px; }
+summary { cursor: pointer; font-size: 13px; font-weight: 700; color: var(--meta); }
+.contents ol { padding: 0; list-style: none; }
+.contents li { border-top: 1px solid var(--line); padding: 15px 0 11px; margin-top: 8px; }
+.contents li strong, .owner { display: block; }
+.owner { color: var(--meta); font-size: 12px; }
+.contents li strong { font-size: 14px; line-height: 1.55; color: var(--ink); margin: 3px 0 8px; }
+.contents li a { display: flex; justify-content: space-between; gap: 9px; align-items: baseline; padding: 4px 0; color: var(--meta); font-size: 13px; text-decoration: none; }
+.contents li a:hover { color: var(--blue); text-decoration: underline; }
+.folio { font-variant-numeric: tabular-nums; }
+.page { padding: 36px 0 24px; scroll-margin-top: 8px; }
+.page + .page { margin-top: 40px; }
+.running { border-bottom: 1.5px solid var(--blue); padding-bottom: 11px; margin-bottom: 24px; }
+.running a { font-size: 14px; font-weight: 700; text-decoration: none; color: var(--meta); }
+.context { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 13px; font-size: 14px; color: var(--blue); font-weight: 700; }
+.context span:last-child { color: var(--meta); font-weight: 400; font-size: 13px; white-space: nowrap; }
+.context b { margin: 0 .4em; font-weight: 400; }
+h2 { color: var(--ink); font-size: clamp(26px,2.8vw,36px); font-weight: 800; line-height: 1.35; letter-spacing: -.045em; }
+.lead { font-size: 17px; margin-top: 12px; }
+figure { margin: 25px 0 26px; padding: 16px 21px 15px; background: var(--wash); border: 1px solid var(--line); border-radius: 6px; }
+figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-bottom: 9px; border-bottom: 1px solid var(--line); }
+figcaption strong { font-size: 15px; color: var(--ink); }
+figcaption a { flex: none; font-size: 12px; text-decoration: none; }
+figcaption a:hover, footer a:hover { text-decoration: underline; }
+.drawing { display: block; margin: 0 auto; }
+.drawing img { display: block; width: 100%; height: auto; }
+.figure-note { color: var(--meta); font-size: 14px; line-height: 1.65; }
+.note { margin-top: 22px; }
+h3 { color: var(--ink); font-size: 19px; font-weight: 800; line-height: 1.5; margin-bottom: 5px; }
+.note p, .rows { font-size: 16px; }
+.rows { margin-top: 8px; }
+.rows div { display: grid; grid-template-columns: minmax(96px, 18%) 1fr; align-items: baseline; gap: 16px; padding: 9px 0; border-top: 1px solid var(--line); }
+.rows dt { color: var(--teal); font-weight: 700; }
+.sheet { border-collapse: collapse; width: 100%; table-layout: fixed; background: white; font-size: 13px; margin: 12px 0 0; text-align: left; }
+.sheet caption { text-align: left; font-weight: 700; font-size: 13px; color: var(--blue); background: var(--wash); padding-bottom: 5px; }
+.sheet th, .sheet td { border: 1px solid var(--line); padding: 5px 10px; }
+.sheet th { background: #e1e8ef; }
+footer { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; margin: 36px 0 0; padding: 9px 0 0; border-top: 1px solid var(--line); color: var(--meta); font-size: 12px; }
+footer a { flex: none; text-decoration: none; font-weight: 700; }
+@media (max-width: 1080px) {
+  .layout { display: block; max-width: 874px; margin: auto; padding: 0 32px; }
+  .contents nav { position: static; margin: 18px 0 0; }
+  .contents summary { font-size: 12px; }
+  .contents ol { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+  .page { padding-top: 18px; }
+}
+@media (max-width: 620px) {
+  .layout { padding: 0 20px; }
+  .contents ol { display: block; }
+  .context { display: block; font-size: 12px; }
+  .context span { display: block; }
+  .context span:last-child { margin-top: 3px; font-size: 12px; }
+  .running { margin-bottom: 17px; padding-bottom: 6px; }
+  h2 { font-size: 27px; }
+  .lead, .note p, .rows { font-size: 15px; }
+  figure { padding: 12px 9px; margin: 20px 0; }
+  figcaption strong { font-size: 14px; }
+  figcaption a { font-size: 11px; }
+  .figure-note { font-size: 13px; }
+  .rows div { grid-template-columns: 75px 1fr; gap: 10px; }
+  .note { margin-top: 18px; }
+  h3 { font-size: 18px; }
+  .page + .page { margin-top: 24px; }
+}
+@media print {
+  @page { size: A4; margin: 14mm; }
+  .layout { display: block; max-width: none; padding: 0; }
+  .contents, figcaption a, .skip { display: none; }
+  .page, .page + .page { margin: 0; padding: 0; break-before: page; }
+  .page:first-child { break-before: auto; }
+  .page { print-color-adjust: exact; }
+  figure, .rows div, .note { break-inside: avoid; }
+  .drawing img { max-height: 63mm; object-fit: contain; }
+  .lead, .note p, .rows { font-size: 10pt; }
+  h2 { font-size: 20pt; }
+}

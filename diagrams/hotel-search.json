@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "호텔 목록과 지도에 같은 검색 조건 전달",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1220,
+      500
+    ],
+    "legend": {
+      "mode": "hidden"
+    }
+  },
+  "components": [
+    {
+      "id": "url",
+      "type": "external",
+      "label": "URL 검색 조건",
+      "sublabel": "지역 · 일정 · 인원",
+      "pos": [
+        40,
+        100
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "filter",
+      "type": "frontend",
+      "label": "필터 훅",
+      "sublabel": "문자열 파싱 · 기본값",
+      "pos": [
+        350,
+        100
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "query",
+      "type": "frontend",
+      "label": "TanStack Query",
+      "sublabel": "조회 조건 · 캐시 키",
+      "pos": [
+        660,
+        100
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "list",
+      "type": "frontend",
+      "label": "결과 목록",
+      "sublabel": "필터에 맞는 호텔",
+      "pos": [
+        1000,
+        100
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "map",
+      "type": "frontend",
+      "label": "지도",
+      "sublabel": "같은 결과의 가격 마커",
+      "pos": [
+        660,
+        340
+      ],
+      "size": [
+        180,
+        72
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "url-filter",
+      "to": "filter",
+      "label": "쿼리 문자열",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left",
+      "from": "url"
+    },
+    {
+      "id": "filter-query",
+      "to": "query",
+      "label": "파싱한 조건",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left",
+      "from": "filter"
+    },
+    {
+      "id": "query-list",
+      "to": "list",
+      "label": "호텔 데이터",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left",
+      "from": "query"
+    },
+    {
+      "id": "query-map",
+      "to": "map",
+      "label": "같은 조회 결과",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "from": "query",
+      "labelAt": [
+        820,
+        248
+      ]
+    }
+  ]
+}
