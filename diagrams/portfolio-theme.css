@@ -10,10 +10,10 @@ svg[data-preset="classic"] .semantic-sigil { display:none; }
 svg[data-preset="classic"] text[data-node-label] { font-size:17px; font-weight:700; }
 svg[data-preset="classic"] g[data-node-id] text[data-detail="context"] { font-size:13.5px; }
 svg[data-preset="classic"] g[data-edge-from] text { font-size:13px; fill:var(--text-muted); }
-svg[data-preset="classic"] :is(#node-filter,#node-vite,#node-json,#node-build,#node-pr,#node-php[data-node-sublabel="운영 요청 수신"]) > rect:not(.c-mask) {
+svg[data-preset="classic"] :is(#node-filter,#node-vite,#node-json,#node-build,#node-pr,#node-request,#node-response,#node-php[data-node-sublabel="운영 요청 수신"]) > rect:not(.c-mask) {
   fill:var(--paper-accent); stroke:var(--paper-accent-line);
 }
-svg[data-preset="classic"] :is(#node-filter,#node-vite,#node-json,#node-build,#node-pr,#node-php[data-node-sublabel="운영 요청 수신"]) > text[data-node-label] {
+svg[data-preset="classic"] :is(#node-filter,#node-vite,#node-json,#node-build,#node-pr,#node-request,#node-response,#node-php[data-node-sublabel="운영 요청 수신"]) > text[data-node-label] {
   fill:var(--paper-accent-ink);
 }
 svg[data-preset="classic"] .a-security {stroke:var(--paper-accent-ink);}

@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "화면의 요청과 앱의 응답이 공통 브리지 모듈을 지나는 경로",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1280,
+      585
+    ],
+    "legend": {
+      "mode": "hidden"
+    }
+  },
+  "components": [
+    {
+      "id": "screen",
+      "type": "frontend",
+      "label": "화면 모듈",
+      "sublabel": "권한 · 이동 · 앱 정보",
+      "pos": [
+        40,
+        248
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "request",
+      "type": "frontend",
+      "label": "브리지 모듈 · 요청",
+      "sublabel": "기기 판별 · 메시지 조립",
+      "pos": [
+        350,
+        248
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "ios",
+      "type": "external",
+      "label": "iOS 앱",
+      "sublabel": "WKWebView",
+      "pos": [
+        675,
+        100
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "android",
+      "type": "external",
+      "label": "Android 앱",
+      "sublabel": "WebView",
+      "pos": [
+        675,
+        396
+      ],
+      "size": [
+        180,
+        72
+      ]
+    },
+    {
+      "id": "response",
+      "type": "frontend",
+      "label": "브리지 모듈 · 응답",
+      "sublabel": "응답 해석 · 허용 여부 통일",
+      "pos": [
+        1020,
+        248
+      ],
+      "size": [
+        200,
+        72
+      ]
+    },
+    {
+      "id": "browser",
+      "type": "external",
+      "label": "브라우저",
+      "sublabel": "주소 이동 · history",
+      "pos": [
+        350,
+        478
+      ],
+      "size": [
+        180,
+        72
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "screen-request",
+      "from": "screen",
+      "to": "request",
+      "label": "기능 이름으로 호출",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "request-ios",
+      "from": "request",
+      "to": "ios",
+      "label": "메시지 핸들러로 전송",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "request-android",
+      "from": "request",
+      "to": "android",
+      "label": "주입 객체로 전송",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "ios-response",
+      "from": "ios",
+      "to": "response",
+      "label": "iOS 형식 응답",
+      "variant": "default",
+      "fromSide": "right",
+      "toSide": "top"
+    },
+    {
+      "id": "android-response",
+      "from": "android",
+      "to": "response",
+      "label": "Android 형식 응답",
+      "variant": "default",
+      "fromSide": "right",
+      "toSide": "bottom"
+    },
+    {
+      "id": "request-browser",
+      "from": "request",
+      "to": "browser",
+      "label": "앱이 아닐 때",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelAt": [
+        500,
+        405
+      ]
+    }
+  ]
+}
